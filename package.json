@@ -1,0 +1,22 @@
+{
+  "name": "collegeevents",
+  "version": "1.0.0",
+  "description": "This is a dynamic website that will allow users to create accounts, add, join and cancel events at their campus. Users could post events such as parties, movie nights, workshops, reunions, music festivals, etc. In addition to that, users can view all events others have created then join them if they want.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tilay123/CollegeEvents.git"
+  },
+  "author": "Til Baniya, Rami Kuttab, Hang Zhao , Dazhi Bi, Chen Yang and Jinchao Zhao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tilay123/CollegeEvents/issues"
+  },
+  "homepage": "https://github.com/tilay123/CollegeEvents#readme",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}
