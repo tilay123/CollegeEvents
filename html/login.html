@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light shadow-sm " style="background-color: #fc9d03;">
-    <a class="navbar-brand">College Events</a>
+    <a class="navbar-brand">College Events </a>
     <div>
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#login">Login</button>
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#signup">Sign-up</button>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="your username">
+                    <input type="password" class="form-control" placeholder="password">
                     <div class="input-group-append">
                         <span class="input-group-text">password</span>
                     </div>
@@ -85,6 +85,43 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="signup" tabindex="-1" >
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Signup</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="your username">
+                    <div class="input-group-append">
+                        <span class="input-group-text">username</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="password">
+                    <div class="input-group-append">
+                        <span class="input-group-text">password</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="email">
+                    <div class="input-group-append">
+                        <span class="input-group-text">e-mail</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Signup</button>
             </div>
         </div>
     </div>
