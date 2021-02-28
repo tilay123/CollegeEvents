@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>College Events</title>
 
 
     <!-- CSS -->
@@ -71,6 +71,12 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer style="background-color: #fc9d03;" class="mt-5">
+        <div class=" p-4 text-center">
+            <span style="font-size: 120%">College Events @2021 </span>
+        </div>
+    </footer>
 
     <!-- Modal -->
     <div class="modal fade" id="login" tabindex="-1">
@@ -112,23 +118,25 @@
                 <div class="modal-body">
 
                     <form action="">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="your username">
-                            <div class="input-group-append">
-                                <span class="input-group-text">username</span>
-                            </div>
+                        <div class="from-group my-2">
+                            <label for="firstName">First Name</label>
+                            <input id="firstName" type="text" class="form-control" required>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="password">
-                            <div class="input-group-append">
-                                <span class="input-group-text">password</span>
-                            </div>
+                        <div class="from-group my-2">
+                            <label for="lastName">Last Name</label>
+                            <input id="lastName" type="text" class="form-control" required>
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="email">
-                            <div class="input-group-append">
-                                <span class="input-group-text">e-mail</span>
-                            </div>
+                        <div class="from-group my-2">
+                            <label for="signUpPassword">Password</label>
+                            <input id="signUpPassword" type="text" class="form-control" required>
+                        </div>
+                        <div class="from-group my-2">
+                            <label for="confirmSignUpPassword">Confirm Password</label>
+                            <input id="confirmSignUpPassword" type="password" class="form-control" required>
+                        </div>
+                        <div class="from-group my-2">
+                            <label for="signUpEmail">Email</label>
+                            <input id="signUpEmail" type="password" class="form-control" required>
                         </div>
                     </form>
                 </div>
