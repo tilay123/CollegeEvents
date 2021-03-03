@@ -120,28 +120,43 @@
                         <div class="from-group my-2">
                             <label for="firstName">First Name</label>
                             <input id="firstName" type="text" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Enter a valid first name
+                            </div>
                         </div>
                         <div class="from-group my-2">
                             <label for="lastName">Last Name</label>
                             <input id="lastName" type="text" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Enter a valid last name
+                            </div>
+                        </div>
+                        <div class="from-group my-2">
+                            <label for="signUpEmail">Email</label>
+                            <input id="signUpEmail" type="email" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Enter a valid email
+                            </div>
                         </div>
                         <div class="from-group my-2">
                             <label for="signUpPassword">Password</label>
-                            <input id="signUpPassword" type="text" class="form-control" required>
+                            <input id="signUpPassword" type="password" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Enter a valid password
+                            </div>
                         </div>
                         <div class="from-group my-2">
                             <label for="confirmSignUpPassword">Confirm Password</label>
                             <input id="confirmSignUpPassword" type="password" class="form-control" required>
-                        </div>
-                        <div class="from-group my-2">
-                            <label for="signUpEmail">Email</label>
-                            <input id="signUpEmail" type="password" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Enter a valid password
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Signup</button>
+                    <button type="submit" id="signUpButton" class="btn btn-primary">Signup</button>
                 </div>
             </div>
         </div>
@@ -152,7 +167,15 @@
     <script>
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                window.location.href = "/homepage.html"
+                const userId = firebase.auth().currentUser.uid
+
+                const userRef = db.collection('users').doc(userId);
+                const doc = await userRef.get();
+
+                //console.log("exists: " +doc.exists)
+                if (doc.exists) {
+                    window.location.href = "/homepage.html";
+                }
             }
         });
     </script>
