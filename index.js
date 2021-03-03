@@ -28,10 +28,13 @@ if (!firebase.apps.length) {
   });
 
 
-  $("#logOutButton").click(function () {
+  function logout(){
     firebase.auth().signOut().then(()=> {
       window.location.href = "/index.js";
     }).catch((error)=>{
       alert(error.message);
     });
-  });
+  }
+  // $("#logOutButton").click(function () {
+
+  // });
