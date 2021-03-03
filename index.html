@@ -165,10 +165,11 @@
 
     <script src="index.js"></script>
     <script>
-        firebase.auth().onAuthStateChanged((user) => {
+        firebase.auth().onAuthStateChanged(async (user) => {
             if (user) {
                 const userId = firebase.auth().currentUser.uid
 
+                const db = firebase.firestore();
                 const userRef = db.collection('users').doc(userId);
                 const doc = await userRef.get();
 
