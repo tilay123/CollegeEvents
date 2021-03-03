@@ -22,9 +22,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
 
-  <script src="../index.js"></script>
+  <script src="/index.js"></script>
   <link rel="stylesheet" href="/css/style.css">
-
 
 </head>
 
@@ -64,14 +63,16 @@
 
           </li>
 
-          <li class="navbar-item">
-            <i class="fa fa-user-times"> Logout</i>
+          <li class="navbar-item" >
+            <button type="button" id="logOutButton" class="btn btn-outline-light"><i class="fa fa-user-times">Logout</i></button>
           </li>
         </ul>
       </div>
     </div>
 
   </nav>
+
+
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -83,6 +84,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
+
+<script>
+  firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+          window.location.href = "../index.html";
+      }
+  });
+</script>
+
 </body>
 
 </html>
