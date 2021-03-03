@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>College Events</title>
 
-
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -118,15 +117,15 @@
                 <div class="modal-body">
 
                     <form action="">
-                        <div class="from-group mb-2">
+                        <div class="from-group my-2">
                             <label for="firstName">First Name</label>
                             <input id="firstName" type="text" class="form-control" required>
                         </div>
-                        <div class="from-group mb-2">
+                        <div class="from-group my-2">
                             <label for="lastName">Last Name</label>
                             <input id="lastName" type="text" class="form-control" required>
                         </div>
-                        <div class="from-group mb-2">
+                        <div class="from-group my-2">
                             <label for="signUpPassword">Password</label>
                             <input id="signUpPassword" type="text" class="form-control" required>
                         </div>
@@ -149,11 +148,11 @@
     </div>
 
 
-    <script src="../index.js"></script>
+    <script src="index.js"></script>
     <script>
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                window.location.href = "html/homepage.html";
+                window.location.href = "/homepage.html"
             }
         });
     </script>

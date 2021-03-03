@@ -5,17 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Home</title>
-
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
     integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
   </script>
 
-<!-- firebase -->
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
@@ -23,8 +20,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
 
   <script src="index.js"></script>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
+  <title>Home</title>
 </head>
 
 <body>
@@ -63,8 +61,9 @@
 
           </li>
 
-          <li class="navbar-item" >
-            <button type="button" id="logOutButton" class="btn btn-outline-light"><i class="fa fa-user-times">Logout</i></button>
+          <li class="navbar-item">
+            <button type="button" id="logOutButton" class="btn btn-outline-light"><i
+                class="fa fa-user-times">Logout</i></button>
           </li>
         </ul>
       </div>
@@ -85,14 +84,17 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
 
-<script>
-  firebase.auth().onAuthStateChanged((user) => {
+  <script>
+    firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
-          window.location.href = "../index.html";
+        window.location.href = "index.html";
       }
-  });
-</script>
+    });
+  </script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
 </body>
 
 </html>

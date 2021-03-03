@@ -13,6 +13,7 @@ if (!firebase.apps.length) {
     firebase.analytics();
   }
 
+  console.log(window.location.href);
   $("#loginButton").click(function () {
     var email = $("#loginEmail").val();
     var pass = $("#loginPassword").val();
@@ -29,9 +30,8 @@ if (!firebase.apps.length) {
 
   $("#logOutButton").click(function () {
     firebase.auth().signOut().then(()=> {
-      window.location.reload();
+      window.location.href = "/index.js";
     }).catch((error)=>{
       alert(error.message);
     });
-    
   });
