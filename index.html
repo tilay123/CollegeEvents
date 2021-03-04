@@ -87,20 +87,34 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="from-group my-2">
-                        <label for="loginEmail">Email</label>
-                        <input id="loginEmail" type="text" class="form-control" required>
+                <form class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="from-group my-2">
+                            <label for="loginEmail">Email</label>
+                            <input id="loginEmail" type="text" class="form-control" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please type in your email address.
+                            </div>
+                        </div>
+                        <div class="from-group my-2">
+                            <label for="loginPassword">Password</label>
+                            <input id="loginPassword" type="password" class="form-control" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please type in your password.
+                            </div>
+                        </div>
                     </div>
-                    <div class="from-group my-2">
-                        <label for="loginPassword">Password</label>
-                        <input id="loginPassword" type="password" class="form-control" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="loginButton" class="btn btn-primary">Login</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" id="loginButton" class="btn btn-primary">Login</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -114,9 +128,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-
-                    <form action="">
+                <form class="needs-validation" novalidate action="">
+                    <div class="modal-body">
                         <div class="from-group my-2">
                             <label for="firstName">First Name</label>
                             <input id="firstName" type="text" class="form-control" required>
@@ -152,12 +165,12 @@
                                 Enter a valid password
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" id="signUpButton" class="btn btn-primary">Signup</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="signUpButton" class="btn btn-primary">Signup</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
