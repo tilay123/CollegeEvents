@@ -1,11 +1,11 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyCW09TRZGMiUCe_o2IsOZJwUw8ODxelHzY",
-  authDomain: "collegeevents-958cc.firebaseapp.com",
-  projectId: "collegeevents-958cc",
-  storageBucket: "collegeevents-958cc.appspot.com",
-  messagingSenderId: "276764470343",
-  appId: "1:276764470343:web:64d68d48a4d606baa1d562",
-  measurementId: "G-7TTWYCQCF0"
+  apiKey: "AIzaSyDhMRBPlcNtNUE6YrrE99YdF8i_r0Lw0YI",
+  authDomain: "collegeeventsv2.firebaseapp.com",
+  projectId: "collegeeventsv2",
+  storageBucket: "collegeeventsv2.appspot.com",
+  messagingSenderId: "651170916635",
+  appId: "1:651170916635:web:81125aedf0a35ad60ecbbe",
+  measurementId: "G-8P2SDKXDCR"
 };
 // Initialize Firebase
 if (!firebase.apps.length) {
