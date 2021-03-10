@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+    <link rel="stylesheet" href="edit-event1.css">
+    
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark px-3 bg-yellow">
+        <div class="container">
+            <a href="homepage.html" class="navbar-brand"> College Events</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navBarCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item px-2">
+                        <a href="homepage.html" class="nav-link active"> Home</a>
+                    </li>
+                    <li class="nav-item px-2">
+                </ul>
+    
+                <ul class="navbar-nav ml-auto text-white">
+                    <li class="navbar-item dropdown mr-3 ">
+    
+                        <!-- href="#": a if you put that txt will hide -->
+                        <a class="navbar-link dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i> Welcome Til
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="homepage.html" class="dropdown-item">
+                                <i class="fa fa-user-circle"></i> Profile
+                            </a>
+                            <a href="homepage.html" class="dropdown-item">
+                                <i class="fa fa-cog"></i> Settings
+                            </a>
+    
+                        </div>
+    
+                    </li>
+    
+                    <li class="navbar-item">
+                        <a href="javascript:logout()" id="logOutButton" class="btn btn-outline-light"><i
+                                class="fa fa-user-times">Logout</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
+    </nav>
+
+    
+    <main id="main-holder">
+        <h1 id="create-account-header">Edit Event</h1>
+        
+
+
+
+
+        <form id="Edit-Event-form">
+            <div class="imgcontainer">
+
+            </div>
+
+            <input type="text" name="Event Name" id="name-field" class="EditEvent-form" placeholder="Event Name">
+            <input type="text" name="Description" id="last-field" class="Description-form" placeholder="Description">
+            <input type="date" name="date" id="date-field" class="date-form" placeholder="mm/dd/yyyy">
+            <input type="text" name="Event Time" id="Time-field" class="create-form-field" placeholder="Event Time">
+            <input type="Event Location" name="Location" id="Location" class="create-form-field" placeholder="Event Location">
+            <input type="Event Capacity" name="Capacity" id="Capacity" class="create-form-field"
+                placeholder="Event Capacity">
+            <input type="submit" value="Submit Change" id="Submit-form-submit">
+
+
+        </form>
+    </main>
+</body>
+
+
+
+</html>
