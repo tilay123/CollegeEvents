@@ -1,0 +1,119 @@
+ * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+}
+.bg-yellow {
+    background-color: #fc9d03;
+}
+
+body {
+    color: black;
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 99vh;
+
+
+}
+
+.form-container .form-wrap {
+    width: 70%;
+    background: #fff;
+    border-radius: 2px;
+    padding: 10px 14px;
+
+}
+
+.form-container .form-wrap h2 {
+    text-align: center;
+    margin: 0px 0px 20px;
+
+}
+
+
+.form-container .form-wrap .form-box {
+    margin: 0px 0px 20px;
+
+}
+
+.form-container .form-wrap .form-box[type="text"] {
+    padding: 4px 9px;
+    width: 100%;
+    border: 1px solid #3b3b3b;
+    border-radius: 3px;
+
+}
+
+
+.form-container .form-wrap .form-box textarea {
+    width: 100%;
+    height: 250px;
+    padding: 4px 9px;
+    border: 1px solid #3b3b3b;
+    border-radius: 3px;
+
+}
+
+
+.form-container .form-wrap .form-submit {
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.form-container .form-wrap .form-submit input[type="submit"] {
+    padding: 4px 9px;
+    background: #353535;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight:700;
+    border-radius: 2px;
+    color: #ffff;
+}
+
+.file-upload {
+    display:inline-flex;
+    align0-items: center;
+    font-size: 15x;
+}
+
+.file-upload_input {
+    display: none;
+
+}
+
+.file-upload_button {
+    -webkit-appearance: none;
+    background: #fc9d03;
+    border: 2px solid #00745d;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5em 0.8em;
+    margin-right: 15px;
+    color:#ffff;
+    font-size: 1em;
+    font-family:"Quicksand", sans-serif;
+    font-weight: bold;
+    cursor: pointer
+}
+
+.file-upload_button:active{
+    background:#00754d;
+
+}
+.file-upload_label {
+  max-width: 250px;
+  font-size: 0.95em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: "Quicksand", sans-serif;
+}
