@@ -2,7 +2,7 @@ html {
     height: 100%;
 }
 
-body {
+#card-section {
     height: 100%;
     margin: 0;
     font-family: Arial, Arial, Helvetica, sans-serif;
@@ -10,7 +10,6 @@ body {
     justify-items: center;
     align-items: center;
     background-color: #3a3a3a;
-
 
 }
 
