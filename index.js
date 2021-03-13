@@ -1,3 +1,4 @@
+$("#create-event-image-upload-progress").hide();
 var firebaseConfig = {
   apiKey: "AIzaSyDhMRBPlcNtNUE6YrrE99YdF8i_r0Lw0YI",
   authDomain: "collegeeventsv2.firebaseapp.com",
@@ -104,16 +105,82 @@ $(document).on('click', '#createEventSubmit', function(){
 
   if (eventName.trim() == "" || eventLocation.trim() == "" || eventCapacity =="" ||eventDate=="" ||  eventTime == "" || eventContactNumber.trim() == "" || eventDescription.trim() == "" ){
     alert("No fields can be empty");
+
+    alert(eventDate + " "+ eventTime)
+
+
   } else if (eventImage == null) {
     alert("Pick an event picture");
     console.log(str)
   } else {
     // upload event to the database
 
-    
+    const userId = firebase.auth().currentUser.uid
+    if (userId == "") {
+      window.location.href = "homepage.html"
+    }
+
+    const db = firebase.firestore();
+
+    const time = new Date()
+    const storageRef = firebase.storage().ref() // firestore reference
+    const fileName = time.getTime() + "_" + eventImage.name
+
+    const uploadTask = storageRef.child("eventPictures/" + fileName).put(eventImage)
+    $("#create-event-image-upload-progress").show()
+
+    // it will first upload the image to Firestorage. (This returns the image url)
+    // Then use the image url to update users' profile picture
+    // Documentation: https://firebase.google.com/docs/storage/web/upload-files
+    uploadTask.on("state_changed",
+      function (snapshot) {
+        //about upload status
+        const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100 )
+        
+        $("#create-event-image-upload-progress").attr("style", "width:" + percent + "%")
+        if (percent == 100){
+          $("#create-event-image-upload-progress").html("Successfully Uploded image!")
+          
+        } else{
+          $("#create-event-image-upload-progress").html(percent + "%")
+        }
+        
+      },
+      function (error) {
+        // if error
+        alert("Theres an error uploading your image. Error Message:" + error.message)
+      }, async function () {
+        // if successful
+
+        uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadUrl) {
+          // after we have the download url of the picture
+
+
+          const eventData = {
+              "eventName": eventName,
+              "eventLocation": eventLocation,
+              "eventCapacity": eventCapacity ,
+              "eventDateAndTime": firebase.firestore.Timestamp.fromDate(new Date(eventDate + " " + eventTime)),
+              "eventContactNumber": eventContactNumber ,
+              "eventDescription": eventDescription ,
+              "eventImage": downloadUrl,
+              "eventCreatedDate": firebase.firestore.Timestamp.now()
+          }
+
+          await db.collection('events').doc().set(eventData).catch(function (error) {
+            alert("Error uploading user Data:" + error.message)
+          });
+          // after updating the profile picture go to home page
+          window.location.href = "homepage.html"
+        })
+      }
+    )
   }
 
+  
 });
+
+
 
 
 
