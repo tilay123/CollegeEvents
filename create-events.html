@@ -66,37 +66,40 @@
   </nav>
 
 
-  <form class="info" action="index.html" method="post">
+  <form class="info" action="">
     <h1>Create Event</h1>
     <label>Event Name:</label>
-    <input type="text" name="eventName" value="">
+    <input type="text" name="eventName" id="create-event-name" value="" required>
     <br>
     <label>Location:</label>
-    <input type="text" name="location" value="">
+    <input type="text" name="location" id="create-event-location" value="" required>
     <br>
     <label>Capacity:</label>
-    <input type="number" name="capacity" value="">
+    <input type="number" name="capacity" id="create-event-capacity" min="0" value="" required>
     <br>
     <label>Event time:</label>
-    <input type="date" name="date" value="">
-    <input type="time" name="time" value="">
+    <input type="date" name="date" id="create-event-date" value="" required>
+    <input type="time" name="time" id="create-event-time" value="" required>
     <br>
-    <label>Contact:</label>
-    <input type="text" name="contact" value="">
+    <label>Contact number:</label>
+    <input type="text" name="contact" id="create-event-contact" value="" required>
     <br>
     <label>Discription:</label>
-    <textarea name="discription" rows="8" cols="80"></textarea>
+    <textarea name="discription" rows="8" cols="80" id="create-event-description" required></textarea>
     <br>
     <label>Upload an image</label>
-    <input type="file" name="img" value="images">
+    <input type="file" name="img" accept="image/*" value="images" id="create-event-image" required>
     <br>
-    <input type="submit" name="Submit" value="Submit">
+    <button type="button" id="createEventSubmit" class="btn btn-primary">Submit</button>
     <input type="reset" name="" value="Reset">
   </form>
 
 
 
   <!-- Script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
   </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">

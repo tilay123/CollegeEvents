@@ -90,6 +90,30 @@ $("#signUpButton").click(async function () {
 });
 
 
+$(document).on('click', '#createEventSubmit', function(){
+  const eventName = $("#create-event-name").val()
+  const eventLocation = $("#create-event-location").val()
+  const eventCapacity = $("#create-event-capacity").val()
+  const eventDate = $("#create-event-date").val()
+  const eventTime = $("#create-event-time").val();
+  const eventContactNumber = $("#create-event-contact").val();
+  const eventDescription = $("#create-event-description").val();
+  const eventImage = $("#create-event-image").prop("files")[0]
+
+  const str = eventName + "-"  + eventLocation + "-"  + eventCapacity + "-"  + eventDate + "-"  + eventTime + "-"  + eventContactNumber+ "-"  + eventDescription+ "-";
+
+  if (eventName.trim() == "" || eventLocation.trim() == "" || eventCapacity =="" ||eventDate=="" ||  eventTime == "" || eventContactNumber.trim() == "" || eventDescription.trim() == "" ){
+    alert("No fields can be empty");
+  } else if (eventImage == null) {
+    alert("Pick an event picture");
+    console.log(str)
+  } else {
+    // upload event to the database
+
+    
+  }
+
+});
 
 
 
@@ -113,4 +137,4 @@ $("#signUpButton").click(async function () {
           form.classList.add('was-validated')
         }, false)
       })
-})()
+})();
