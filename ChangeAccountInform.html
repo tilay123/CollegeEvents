@@ -17,8 +17,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="./account.css" />
+  <script src="index.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="ChangeAccountInform.css">
 
   </head>
   <body>
@@ -81,39 +82,48 @@
       <div class="input-group">
         <span class="input-group-addon">UserName</span>
         <input
+          id="change-username"
           type="text"
           class="form-control"
           placeholder="username"
           aria-describedby="basic-addon1"
+          required
         />
       </div>
       <div class="input-group">
         <span class="input-group-addon">First Name</span>
         <input
+          id="change-first-name"
           type="text"
           class="form-control"
           placeholder="first name"
           aria-describedby="basic-addon1"
+          required
         />
       </div>
 
       <div class="input-group">
         <span class="input-group-addon">Last Name</span>
         <input
+        id="change-last-name"
           type="text"
           class="form-control"
           placeholder="last name"
           aria-describedby="basic-addon1"
+          required
         />
       </div>
 
       <div class="input-group">
         <span class="input-group-addon">birthday</span>
         <input
+        id="changeBithday"
           type="date"
           class="form-control"
           placeholder="name"
           aria-describedby="basic-addon1"
+          required
+          
         />
       </div>
 
@@ -135,7 +145,8 @@
             type="radio"
             name="inlineRadioOptions"
             id="inlineRadio1"
-            value="option1"
+            value="Male"
+            required
           />
           Male
         </label>
@@ -144,17 +155,18 @@
             type="radio"
             name="inlineRadioOptions"
             id="inlineRadio2"
-            value="option2"
+            value="Female"
+            required
           />
           Female
         </label>
       </div>
       <div style="display: flex; width: 40%;">
         <button
-          type="submit"
+          type="button"
+          id="saveEditedProfileInfo"
           style="width: 50%; margin-top: 3vh; margin-right: 20px;"
-          class="btn btn-info"
-        >
+          class="btn btn-info">
           Save
         </button>
 

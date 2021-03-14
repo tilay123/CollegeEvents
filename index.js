@@ -205,3 +205,41 @@ $(document).on('click', '#createEventSubmit', function(){
         }, false)
       })
 })();
+
+
+$(document).ready(function() {
+  $("#saveEditedProfileInfo").click(async function () {
+    const username = $("#change-username").val()
+    const firstName = $("#change-first-name").val()
+    const lastName = $("#change-last-name").val();
+    const birthday = $("#changeBithday").val();
+  
+    const gender = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
+  
+
+    if (username.trim() == "" || firstName.trim == "" || lastName.trim() == "" || birthday == ""){
+      alert("all fields must be filled")
+      //console.log(username + " " + firstName + " " + lastName + + " " + birthday + " " +  gender)
+    } else {
+      const db = firebase.firestore();
+      const userId = firebase.auth().currentUser.uid
+
+      const updatedProfileData = {
+        "username": username,
+        "firstName": firstName,
+        "lastName": lastName,
+        "gender:": gender,
+        "birthday": firebase.firestore.Timestamp.fromDate(new Date(birthday)),
+      }
+
+      await db.collection('users').doc(userId).update(updatedProfileData).catch(function (error) {
+        alert("Error uploading user Data:" + error.message)
+      });
+      window.location.href = "homepage.html"
+    }
+
+
+  });
+
+});
+
