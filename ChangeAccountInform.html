@@ -5,101 +5,129 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="./ChangeAccountInform.css" />
-    <link rel="stylesheet" href="create-events.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <script src="index.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="ChangeAccountInform.css">
+
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark px-3 bg-yellow text-dark">
-      <div class="container">
-        <a href="homepage.html" class="navbar-brand"> College Events</a>
-        <button
-          class="navbar-toggler"
-          data-toggle="collapse"
-          data-target="#navBarCollapse"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navBarCollapse">
-          <ul class="navbar-nav">
-            <li class="nav-item px-2">
-              <a href="homepage.html" class="nav-link active"> Home</a>
-            </li>
-            <li class="nav-item px-2"></li>
-          </ul>
-
-          <ul class="navbar-nav ml-auto text-white">
-            <li class="navbar-item dropdown mr-3">
-              <!-- href="#": a if you put that txt will hide -->
-              <a class="navbar-link dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-user"></i> Welcome Til
-              </a>
-              <div class="dropdown-menu">
-                <a href="homepage.html" class="dropdown-item">
-                  <i class="fa fa-user-circle"></i> Profile
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark px-3 bg-yellow">
+        <div class="container">
+          <a href="homepage.html" class="navbar-brand"> College Events</a>
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarCollapse">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navBarCollapse">
+            <ul class="navbar-nav">
+              <li class="nav-item px-2">
+                <a href="homepage.html" class="nav-link active"> Home</a>
+              </li>
+              <li class="nav-item px-2">
+            </ul>
+    
+            <ul class="navbar-nav ml-auto text-white">
+    
+              <li class="navbar-item mr-5">
+                <a href="create-events.html" id="logOutButton" class="btn btn-outline-light">
+                  <i class="fas fa-plus">Add an Event</i></a>
+              </li>
+    
+    
+              <li class="navbar-item dropdown mr-3 ">
+    
+                <!-- href="#": a if you put that txt will hide -->
+                <a class="navbar-link dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-user"></i> Welcome Til
                 </a>
-                <a href="homepage.html" class="dropdown-item">
-                  <i class="fa fa-cog"></i> Settings
-                </a>
-              </div>
-            </li>
-
-            <li class="navbar-item">
-              <a
-                href="javascript:logout()"
-                id="logOutButton"
-                class="btn btn-outline-light"
-                ><i class="fa fa-user-times">Logout</i></a
-              >
-            </li>
-          </ul>
+                <div class="dropdown-menu">
+                  <a href="ChangeAccountInform.html" class="dropdown-item">
+                    <i class="fa fa-user-circle"></i> Change account info
+                  </a>
+                  <a href="ChangePassword.html" class="dropdown-item">
+                    <i class="fa fa-cog"></i> Change Password
+                  </a>
+                  <a href="ChangingEmail.html" class="dropdown-item">
+                    <i class="far fa-envelope"></i> Change email
+                  </a>
+                  <a href="javascript:logout()" id="logOutButton" class="btn btn-outline-light text-danger mr-3"><i
+                    class="fa fa-user-times">Logout</i></a>
+    
+                </div>
+    
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
+
+    <div class="container mt-5">
     <form action="#" class="form">
       <h1>Your Profile</h1>
-      <div class="form-group" style="width:100%">
+      <div class="input-group">
         <span class="input-group-addon">UserName</span>
         <input
+          id="change-username"
           type="text"
           class="form-control"
           placeholder="username"
           aria-describedby="basic-addon1"
+          required
         />
       </div>
-      <div class="form-group" style="width:100%">
+      <div class="input-group">
         <span class="input-group-addon">First Name</span>
         <input
+          id="change-first-name"
           type="text"
           class="form-control"
           placeholder="first name"
           aria-describedby="basic-addon1"
+          required
         />
       </div>
 
-      <div class="form-group" style="width:100%">
+      <div class="input-group">
         <span class="input-group-addon">Last Name</span>
         <input
+        id="change-last-name"
           type="text"
           class="form-control"
           placeholder="last name"
           aria-describedby="basic-addon1"
+          required
         />
       </div>
 
-      <div class="form-group" style="width:100%">
+      <div class="input-group">
         <span class="input-group-addon">birthday</span>
         <input
+        id="changeBithday"
           type="date"
           class="form-control"
           placeholder="name"
           aria-describedby="basic-addon1"
+          required
+          
         />
       </div>
 
-      <div class="form-group" style="width:100%">
+      <!-- <div class="input-group">
         <span class="input-group-addon">Email Address</span>
         <input
           type="text"
@@ -107,9 +135,9 @@
           placeholder="email address"
           aria-describedby="basic-addon1"
         />
-      </div>
+      </div> -->
 
-      <div class="form-group" style="width:100%" style="align-self: flex-start">
+      <div class="input-group" style="align-self: flex-start">
         <h4 style="display: inline">Gender:</h4>
         <label class="radio-inline">
           <input
@@ -117,7 +145,8 @@
             type="radio"
             name="inlineRadioOptions"
             id="inlineRadio1"
-            value="option1"
+            value="Male"
+            required
           />
           Male
         </label>
@@ -126,23 +155,44 @@
             type="radio"
             name="inlineRadioOptions"
             id="inlineRadio2"
-            value="option2"
+            value="Female"
+            required
           />
           Female
         </label>
       </div>
-      <div style="display: flex; width: 40%">
+      <div style="display: flex; width: 40%;">
         <button
-          type="submit"
-          style="width: 50%; margin-top: 3vh; margin-right: 20px"
-          class="btn btn-info"
-        >
+          type="button"
+          id="saveEditedProfileInfo"
+          style="width: 50%; margin-top: 3vh; margin-right: 20px;"
+          class="btn btn-info">
           Save
         </button>
-        <button type="submit" style="width: 50%; margin-top: 3vh" class="btn">
-          Cancel
-        </button>
+
+        <a href="homepage.html" style="width: 50%; margin-top: 3vh" class="btn btn-outline-dark">Cancel</a>
+
       </div>
     </form>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+
+  <script>
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = "index.html";
+      }
+    });
+  </script>
   </body>
 </html>
