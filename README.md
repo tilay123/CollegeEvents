@@ -1,7 +1,7 @@
 # CollegeEvents
 
 ## To-Do
-chen: login page(index.html), error page (404.html)
+chen: backend ForgotPassword.html, changePassoword.html and change email.html
 
 ## How to run
 1. Install Node.js and npm. More Info: https://www.npmjs.com/get-npm
