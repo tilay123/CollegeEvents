@@ -243,3 +243,39 @@ $(document).ready(function() {
 
 });
 
+
+// Forget Password
+$("#resetPwd").click(function (e) {
+
+  const email = $("#resetPwdEmail").val()
+
+  if (email != "") {
+    firebase.auth().sendPasswordResetEmail(email).then(() => {
+      alert("Password reset email sent. It may take up to 5 minutes to receive it. Please check your email to verify.")
+      window.location.replace("index.html")
+    }).catch(function (error) {
+      alert(error.message)
+    })
+  } else {
+    alert("Email field can't be empty")
+  }
+});
+
+// Update Password
+$("#change-password-button").click(function (e){
+  alert("in")
+  var user = firebase.auth().currentUser;
+  var newPassword = $("#change-password-1").val();
+
+  user.updatePassword(newPassword).then(() => {
+    alert("Success")
+    window.location.replace("index.html")
+  }).catch(function(error) {
+    alert("something wrong")
+  });
+
+
+});
+
+
+
