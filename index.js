@@ -295,29 +295,22 @@ $(function(){
 $(function(){
   $("#change-email-button").click(function(e){
     var oldemail = $("#change-email-oldemail").val()
+    var oldpassword = $("#change-email-oldpassword").val()
     var newemail = $("#change-email-newemail").val()
-    // Construct the email link credential from the current URL.
-    var credential = firebase.auth.EmailAuthProvider.credentialWithLink(
-        oldemail, window.location.href);
 
-    // Re-authenticate the user with this credential.
-    firebase.auth().currentUser.reauthenticateWithCredential(credential)
-        .then((usercred) => {
-          // The user is now successfully re-authenticated and can execute sensitive
-          user.updateEmail(newemail).then(function() {
-            // Update successful.
+
+    firebase.auth()
+        .signInWithEmailAndPassword(oldemail, oldpassword)
+        .then(function(user) {
+          firebase.auth().currentUser.updateEmail(newemail).then(function(){
             alert("success")
             logout()
-          }).catch(function(error) {
-            // An error happened.
-            alert(error)
+          }).catch(function(err){
+            alert(err)
           });
-        })
-        .catch((error) => {
-          // Some error occurred.
-          alert(error)
-        });
-
+        }).catch(function(err){
+      alert(err)
+    });
 
 
   })
