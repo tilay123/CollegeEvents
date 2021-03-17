@@ -262,20 +262,64 @@ $("#resetPwd").click(function (e) {
 });
 
 // Update Password
-$("#change-password-button").click(function (e){
-  alert("in")
-  var user = firebase.auth().currentUser;
-  var newPassword = $("#change-password-1").val();
+$(function(){
+  $("#change-password-button").click(function(e){
+    var emailaddress = $("#change-password-email").val()
+    var oldpassword = $("#change-password-oldpassowrd").val()
+    var newpassword1 = $("#change-password-newpassword-1").val()
+    var newpassword2 = $("#change-password-newpassword-2").val()
 
-  user.updatePassword(newPassword).then(() => {
-    alert("Success")
-    window.location.replace("index.html")
-  }).catch(function(error) {
-    alert("something wrong")
-  });
+    if(newpassword1 == newpassword2){
+      firebase.auth()
+          .signInWithEmailAndPassword(emailaddress, oldpassword)
+          .then(function(user) {
+            firebase.auth().currentUser.updatePassword(newpassword1).then(function(){
+              alert("success")
+              logout()
+            }).catch(function(err){
+              alert(err)
+            });
+          }).catch(function(err){
+            alert(err)
+      });
+    }else {
+      alert("new password must be equal")
+    }
 
 
+
+  })
 });
 
+// Update email address
+$(function(){
+  $("#change-email-button").click(function(e){
+    var oldemail = $("#change-email-oldemail").val()
+    var newemail = $("#change-email-newemail").val()
+    // Construct the email link credential from the current URL.
+    var credential = firebase.auth.EmailAuthProvider.credentialWithLink(
+        oldemail, window.location.href);
 
+    // Re-authenticate the user with this credential.
+    firebase.auth().currentUser.reauthenticateWithCredential(credential)
+        .then((usercred) => {
+          // The user is now successfully re-authenticated and can execute sensitive
+          user.updateEmail(newemail).then(function() {
+            // Update successful.
+            alert("success")
+            logout()
+          }).catch(function(error) {
+            // An error happened.
+            alert(error)
+          });
+        })
+        .catch((error) => {
+          // Some error occurred.
+          alert(error)
+        });
+
+
+
+  })
+});
 
