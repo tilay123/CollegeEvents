@@ -165,7 +165,8 @@ $(document).on('click', '#createEventSubmit', function () {
             "eventDescription": eventDescription,
             "eventImage": downloadUrl,
             "availableSeats": eventCapacity,
-            "eventCreatedDate": firebase.firestore.Timestamp.now()
+            "eventCreatedDate": firebase.firestore.Timestamp.now(),
+            "owner": userId
           }
 
           await db.collection('events').doc().set(eventData).catch(function (error) {

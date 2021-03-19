@@ -1,7 +1,5 @@
 # CollegeEvents
 
-## To-Do
-chen: 
 
 ## How to run
 1. Install Node.js and npm. More Info: https://www.npmjs.com/get-npm
