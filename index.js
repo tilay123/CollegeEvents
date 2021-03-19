@@ -91,7 +91,7 @@ $("#signUpButton").click(async function () {
 });
 
 
-$(document).on('click', '#createEventSubmit', function(){
+$(document).on('click', '#createEventSubmit', function () {
   const eventName = $("#create-event-name").val()
   const eventLocation = $("#create-event-location").val()
   const eventCapacity = $("#create-event-capacity").val()
@@ -101,12 +101,12 @@ $(document).on('click', '#createEventSubmit', function(){
   const eventDescription = $("#create-event-description").val();
   const eventImage = $("#create-event-image").prop("files")[0]
 
-  const str = eventName + "-"  + eventLocation + "-"  + eventCapacity + "-"  + eventDate + "-"  + eventTime + "-"  + eventContactNumber+ "-"  + eventDescription+ "-";
+  const str = eventName + "-" + eventLocation + "-" + eventCapacity + "-" + eventDate + "-" + eventTime + "-" + eventContactNumber + "-" + eventDescription + "-";
 
-  if (eventName.trim() == "" || eventLocation.trim() == "" || eventCapacity =="" ||eventDate=="" ||  eventTime == "" || eventContactNumber.trim() == "" || eventDescription.trim() == "" ){
+  if (eventName.trim() == "" || eventLocation.trim() == "" || eventCapacity == "" || eventDate == "" || eventTime == "" || eventContactNumber.trim() == "" || eventDescription.trim() == "") {
     alert("No fields can be empty");
 
-    alert(eventDate + " "+ eventTime)
+    alert(eventDate + " " + eventTime)
 
 
   } else if (eventImage == null) {
@@ -135,16 +135,16 @@ $(document).on('click', '#createEventSubmit', function(){
     uploadTask.on("state_changed",
       function (snapshot) {
         //about upload status
-        const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100 )
-        
+        const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+
         $("#create-event-image-upload-progress").attr("style", "width:" + percent + "%")
-        if (percent == 100){
+        if (percent == 100) {
           $("#create-event-image-upload-progress").html("Successfully Uploded image!")
-          
-        } else{
+
+        } else {
           $("#create-event-image-upload-progress").html(percent + "%")
         }
-        
+
       },
       function (error) {
         // if error
@@ -157,14 +157,15 @@ $(document).on('click', '#createEventSubmit', function(){
 
 
           const eventData = {
-              "eventName": eventName,
-              "eventLocation": eventLocation,
-              "eventCapacity": eventCapacity ,
-              "eventDateAndTime": firebase.firestore.Timestamp.fromDate(new Date(eventDate + " " + eventTime)),
-              "eventContactNumber": eventContactNumber ,
-              "eventDescription": eventDescription ,
-              "eventImage": downloadUrl,
-              "eventCreatedDate": firebase.firestore.Timestamp.now()
+            "eventName": eventName,
+            "eventLocation": eventLocation,
+            "eventCapacity": eventCapacity,
+            "eventDateAndTime": firebase.firestore.Timestamp.fromDate(new Date(eventDate + " " + eventTime)),
+            "eventContactNumber": eventContactNumber,
+            "eventDescription": eventDescription,
+            "eventImage": downloadUrl,
+            "availableSeats": eventCapacity,
+            "eventCreatedDate": firebase.firestore.Timestamp.now()
           }
 
           await db.collection('events').doc().set(eventData).catch(function (error) {
@@ -176,8 +177,6 @@ $(document).on('click', '#createEventSubmit', function(){
       }
     )
   }
-
-  
 });
 
 
@@ -194,30 +193,30 @@ $(document).on('click', '#createEventSubmit', function(){
 
   // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
-          form.classList.add('was-validated')
-        }, false)
-      })
+        form.classList.add('was-validated')
+      }, false)
+    })
 })();
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   $("#saveEditedProfileInfo").click(async function () {
     const username = $("#change-username").val()
     const firstName = $("#change-first-name").val()
     const lastName = $("#change-last-name").val();
     const birthday = $("#changeBithday").val();
-  
-    const gender = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
-  
 
-    if (username.trim() == "" || firstName.trim == "" || lastName.trim() == "" || birthday == ""){
+    const gender = $("input[type='radio'][name='inlineRadioOptions']:checked").val();
+
+
+    if (username.trim() == "" || firstName.trim == "" || lastName.trim() == "" || birthday == "") {
       alert("all fields must be filled")
       //console.log(username + " " + firstName + " " + lastName + + " " + birthday + " " +  gender)
     } else {
@@ -262,28 +261,28 @@ $("#resetPwd").click(function (e) {
 });
 
 // Update Password
-$(function(){
-  $("#change-password-button").click(function(e){
+$(function () {
+  $("#change-password-button").click(function (e) {
     var emailaddress = $("#change-password-email").val()
     var oldpassword = $("#change-password-oldpassowrd").val()
     var newpassword1 = $("#change-password-newpassword-1").val()
     var newpassword2 = $("#change-password-newpassword-2").val()
 
-    if(newpassword1 == newpassword2){
+    if (newpassword1 == newpassword2) {
       firebase.auth()
-          .signInWithEmailAndPassword(emailaddress, oldpassword)
-          .then(function(user) {
-            firebase.auth().currentUser.updatePassword(newpassword1).then(function(){
-              alert("success")
-              logout()
-            }).catch(function(err){
-              alert(err)
-            });
-          }).catch(function(err){
+        .signInWithEmailAndPassword(emailaddress, oldpassword)
+        .then(function (user) {
+          firebase.auth().currentUser.updatePassword(newpassword1).then(function () {
+            alert("success")
+            logout()
+          }).catch(function (err) {
             alert(err)
-      });
-    }else {
-      alert("new password must be equal")
+          });
+        }).catch(function (err) {
+          alert(err)
+        });
+    } else {
+      alert("new password must be same")
     }
 
 
@@ -292,27 +291,25 @@ $(function(){
 });
 
 // Update email address
-$(function(){
-  $("#change-email-button").click(function(e){
+$(function () {
+  $("#change-email-button").click(function (e) {
     var oldemail = $("#change-email-oldemail").val()
     var oldpassword = $("#change-email-oldpassword").val()
     var newemail = $("#change-email-newemail").val()
 
 
     firebase.auth()
-        .signInWithEmailAndPassword(oldemail, oldpassword)
-        .then(function(user) {
-          firebase.auth().currentUser.updateEmail(newemail).then(function(){
-            alert("success")
-            logout()
-          }).catch(function(err){
-            alert(err)
-          });
-        }).catch(function(err){
-      alert(err)
-    });
-
+      .signInWithEmailAndPassword(oldemail, oldpassword)
+      .then(function (user) {
+        firebase.auth().currentUser.updateEmail(newemail).then(function () {
+          alert("success")
+          logout()
+        }).catch(function (err) {
+          alert(err)
+        });
+      }).catch(function (err) {
+        alert(err)
+      });
 
   })
 });
-

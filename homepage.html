@@ -9,9 +9,9 @@
     integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
+  </script>
 
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
@@ -27,7 +27,7 @@
 
 <body>
   <!-- START HERE -->
-  <nav class="navbar navbar-expand-md navbar-dark px-3 bg-yellow">
+  <nav class="navbar navbar-expand-md navbar-dark px-3 bg-yellow sticky-top">
     <div class="container">
       <a href="homepage.html" class="navbar-brand"> College Events</a>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarCollapse">
@@ -67,7 +67,7 @@
                 <i class="far fa-envelope"></i> Change email
               </a>
               <a href="javascript:logout()" id="logOutButton" class="btn btn-outline-light text-danger mr-3"><i
-                class="fa fa-user-times">Logout</i></a>
+                  class="fa fa-user-times">Logout</i></a>
             </div>
 
           </li>
@@ -77,8 +77,48 @@
 
   </nav>
 
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 text-white">
+          <div class="card my-3 bg-success text-center block">
+            <div class="card-body p-5">
+              <a href="create-events.html" class="text-white h5"><i class="fas fa-plus pr-1"></i>Add an Event</a>
+            </div>
+          </div>
+          <div class="card my-3 bg-primary text-center block">
+            <div class="card-body p-5">
+              <a href="homepage.html" class="text-white h5"><i class="fas fa-eye pr-1"></i>View my profile</a>
+            </div>
+          </div>
 
+        </div>
 
+        <div id="mainEventContent" class="col-lg-9">
+          <div class="circularProgressIndicator my-5 justify-content-center mx-auto"></div>
+
+          <!-- <div class="card my-3">
+            <img class="card-img-top"
+              src="https://wreg.com/wp-content/uploads/sites/18/2020/08/hypatia-h_e789ddcf16e033beefc48a57b0585829-h_05be6b7fa913f643818ab7b0ffcfb5e4.jpg?w=1600&h=1067&crop=1"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title display-4">Event Name</h5>
+              <p class="card-text"> eveniet aliquam iste necessitatibus nobis, quo exercitationem in doloribus
+                corrupti
+                illum perspiciatis dolores itaque totam tenetur odit! Tempore, quidem! Voluptas reiciendis illo
+                necessitatibus!</p>
+              <p><i class="fas fa-map-marker-alt px-2"></i> 1919 Handa St.</p>
+              <p><i class="fas fa-clock px-2"></i> 12/8/2020 at 7pm</p>
+              <p><i class="fas fa-phone px-2"></i>315 289 3344</p>
+              <p> <strong class="px-2">Capacity:</strong>200</p>
+              <p> <strong class="px-2">Available:</strong>200</p>
+              <button type="button" class="btn btn-block bg-yellow px-5">Join Event</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -97,6 +137,39 @@
       }
     });
   </script>
+
+  <script>
+    
+      const db = firebase.firestore();
+      db.collection('events').orderBy("eventCreatedDate").limit(10).get().then((querySnapshot) => {
+        var eventHtml = "";
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, " => ", doc.data());
+
+          const docObj = doc.data();
+
+          eventHtml += `<div class="card my-3">
+            <img class="card-img-top"
+              src="${docObj.eventImage}"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title display-4">${docObj.eventName}</h5>
+              <p class="card-text">${docObj.eventDescription}</p>
+              <p><i class="fas fa-map-marker-alt px-2"></i>${docObj.eventLocation}</p>
+              <p><i class="fas fa-clock px-2"></i>${docObj.eventDateAndTime.toDate()}</p>
+              <p><i class="fas fa-phone px-2"></i>${docObj.eventContactNumber}</p>
+              <p> <strong class="px-2">Capacity:</strong>${docObj.eventCapacity}</p>
+              <p> <strong class="px-2">Available:</strong>${docObj.availableSeats}</p>
+              <button type="button" class="btn btn-block bg-yellow px-5">Join Event</button>
+            </div>
+          </div>
+          `;
+        });
+        $("#mainEventContent").html(eventHtml);
+      });
+    
+  </script>
+
 </body>
 
 </html>
