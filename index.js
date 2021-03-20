@@ -314,3 +314,35 @@ $(function () {
 
   })
 });
+
+
+async function joinEvent(eventId,eventOwnerId){
+  //alert("Joining..." + eventId +" "+ eventOwnerId)
+
+  const db = firebase.firestore();
+  const userId = firebase.auth().currentUser.uid
+
+  const querySnapshot = await db.collection('eventRequests').doc(eventOwnerId).collection("requests")
+  .where("requesterId", "==",userId).where("eventId", "==", eventId).get();
+
+  // console.log(querySnapshot);
+  // console.log(querySnapshot.size);
+  // console.log(querySnapshot.empty);
+
+  if (!querySnapshot.docs.length == 0){
+    alert("Request already sent!");
+  } else {
+
+    const request = {
+      "eventOwner": eventOwnerId,
+      "eventId": eventId,
+      "requesterId": userId,
+      "requestedDate": firebase.firestore.Timestamp.now(),
+    }
+  
+    await db.collection('eventRequests').doc(eventOwnerId).collection("requests").doc().set(request).catch(function (error) {
+      alert("Error joining event:" + error.message)
+    });
+    alert("Event join request sent");
+  }
+}
