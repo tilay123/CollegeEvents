@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wait List</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="waitlist.css">
+  <script src="index.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+
+
+
+
+
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark px-3 bg-yellow m-0">
+      <div class="container">
+        <a href="homepage.html" class="navbar-brand"> College Events</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navBarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navBarCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item px-2">
+              <a href="homepage.html" class="nav-link active"> Home</a>
+            </li>
+            <li class="nav-item px-2">
+          </ul>
+
+          <ul class="navbar-nav ml-auto text-white">
+            <li class="navbar-item dropdown mr-3 ">
+
+              <!-- href="#": a if you put that txt will hide -->
+              <a class="navbar-link dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i> Welcome Til
+              </a>
+              <div class="dropdown-menu">
+                <a href="homepage.html" class="dropdown-item">
+                  <i class="fa fa-user-circle"></i> Profile
+                </a>
+                <a href="homepage.html" class="dropdown-item">
+                  <i class="fa fa-cog"></i> Settings
+                </a>
+
+              </div>
+
+            </li>
+
+            <li class="navbar-item">
+              <a href="javascript:logout()" id="logOutButton" class="btn btn-outline-light"><i
+                  class="fa fa-user-times">Logout</i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+  </header>
+
+  <section id="card-section">
+    <main id="main-holder">
+      <h1 id="create-account-header">Waitlist</h1>
+      <ul id="wait-list"></ul>
+      <form id="Edit-Event-form">
+        <div class="imgcontainer">
+
+        </div>
+
+         <input type="text" name="EventName" id="Eventname-field" class="EditEvent-form" placeholder="Event Name">
+        <input type="text" name="EventTime" id="Time-field" class="create-form-field" placeholder="Event Time">
+        <input type="Event Location" name="Location" id="Location" class="create-form-field"
+          placeholder="Event Location">
+        <input type="text" name="FirstName" id="Fname-field" class="EditEvent-form" placeholder="first Name">
+        <input type="text" name="LastName" id="Lname-field" class="EditEvent-form" placeholder="last Name">
+        <input onlick = "writeData()" type="submit" value="Accept" id="Accept-form-submit">
+        <input  onlick = "writeData()" type="submit" value="Reject" id="Reject-form-submit">
+
+        
+      </form>
+    </main>
+  </section>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDhMRBPlcNtNUE6YrrE99YdF8i_r0Lw0YI",
+    authDomain: "collegeeventsv2.firebaseapp.com",
+    databaseURL: "https://collegeeventsv2-default-rtdb.firebaseio.com",
+    projectId: "collegeeventsv2",
+    storageBucket: "collegeeventsv2.appspot.com",
+    messagingSenderId: "651170916635",
+    appId: "1:651170916635:web:81125aedf0a35ad60ecbbe",
+    measurementId: "G-8P2SDKXDCR"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  const db = firebase.firestore();
+  db.setting*=({ timestampsInSnapshots: true});
+</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="waitlist.js"></script>
+</body>
+
+
+
+</html>
