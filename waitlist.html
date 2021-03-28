@@ -94,19 +94,22 @@
   </script>
 
   <script>
+            var requestDoc;
+    
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const db = firebase.firestore();
 
         const currentUserId = firebase.auth().currentUser.uid;
-
+        
         db.collection('eventRequests').doc(currentUserId).collection("requests").orderBy("requestedDate").limit(10)
-          .get().then((querySnapshot) => {
+          .onSnapshot((querySnapshot) => {
             var eventRequestHtml = "";
 
             console.log(currentUserId);
 
             querySnapshot.forEach((doc) => {
+              requestDoc = doc;
               console.log(doc.id, " => ", doc.data());
 
               const docObj = doc.data();
@@ -118,8 +121,8 @@
             <div class="col">
             <h3>${docObj.requesterName} <span class="h5">wants to join</span> ${docObj.eventName}</h3>
             </div>
-            <button type="button" onclick="handleRequest(true,'${doc}')" class="btn btn-success ml-auto mx-2 px-3">Accept</button>
-            <button type="button" onclick="handleRequest(false,'${doc}')" class="btn btn-danger ml-auto mx-2 px-3">Reject</button>
+            <button type="button" onclick="handleRequest(true,requestDoc)" class="btn btn-success ml-auto mx-2 px-3">Accept</button>
+            <button type="button" onclick="handleRequest(false,requestDoc)" class="btn btn-danger ml-auto mx-2 px-3">Reject</button>
             </div>
             </div>
             </div>

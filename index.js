@@ -390,6 +390,19 @@ function goToeditEventPage(owner,docId){
   window.location.href = "/edit-event1.html?owner=" + owner + '&docId=' + docId;
 }
 
-function handleRequest(requestStatus, RequestDoc){
+async function handleRequest(accepted, requestDoc){
+
+  var docData = requestDoc.data();
+
+  docData.joinedDate = firebase.firestore.Timestamp.now();
+  const db = firebase.firestore();
+  // if accepted
+  if (accepted == true){
+    await db.collection('events').doc(docData.eventId).collection("joined").doc().set(docData);
+  }
+
+  await requestDoc.ref.delete();
+
   
+
 }
