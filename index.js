@@ -381,3 +381,7 @@ $(document).ready(function () {
   });
 
 });
+
+function goToeditEventPage(owner,docId){
+  window.location.href = "/edit-event1.html?owner=" + owner + '&docId=' + docId;
+}

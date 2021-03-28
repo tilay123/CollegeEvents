@@ -74,13 +74,12 @@
         </nav>
     </header>
 
-    <section id="card-section">
+    <section id="card-section" class="justify-content-center m-5">
         <main id="main-holder">
             <h1 id="create-account-header">Edit Event</h1>
 
             <form id="Edit-Event-form">
                 <div class="imgcontainer">
-
                 </div>
 
                 <input type="text" name="Event Name" id="name-field" class="EditEvent-form" placeholder="Event Name">
@@ -92,7 +91,7 @@
                     placeholder="Event Location">
                 <input type="Event Capacity" name="Capacity" id="Capacity" class="create-form-field"
                     placeholder="Event Capacity">
-                <input type="submit" value="Submit Change" id="Submit-form-submit">
+                <input type="button" value="Submit Change" id="submit-edited-event">
 
 
             </form>
@@ -105,17 +104,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-        <script>
-        const db = firebase.firestore();
-        const eventInfo = db.collection('events').doc(eventId).update{{
-          eventName:'name-field'
-          eventDiscription:'last-field'
-          eventDateAndTime:'date-field'
-          eventCapacity:'Capacity'
-          eventLocation:'Location'
-        }};
-        </script>
 </body>
 
 

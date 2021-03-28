@@ -143,12 +143,29 @@
   <script>
     
       const db = firebase.firestore();
+      
       db.collection('events').orderBy("eventCreatedDate").limit(10).get().then((querySnapshot) => {
         var eventHtml = "";
+        const currentUserId = firebase.auth().currentUser.uid;
+
         querySnapshot.forEach((doc) => {
           console.log(doc.id, " => ", doc.data());
 
           const docObj = doc.data();
+
+          console.log(currentUserId);
+
+
+          var button = "";
+
+
+          if (docObj.owner === currentUserId){
+            button = `<button type="button" onclick="goToeditEventPage('${docObj.owner}','${doc.id}')" class="btn btn-block bg-yellow px-5">Edit Event</button>`;
+          } else {
+            button = `<button type="button" onclick="joinEvent('${doc.id}', '${docObj.owner}')" class="btn btn-block bg-yellow px-5">Join Event</button>`;
+          }
+
+
 
           eventHtml += `<div class="card my-3">
             <img class="card-img-top"
@@ -162,7 +179,7 @@
               <p><i class="fas fa-phone px-2"></i>${docObj.eventContactNumber}</p>
               <p> <strong class="px-2">Capacity:</strong>${docObj.eventCapacity}</p>
               <p> <strong class="px-2">Available:</strong>${docObj.availableSeats}</p>
-              <button type="button" onclick="joinEvent('${doc.id}', '${docObj.owner}')" class="btn btn-block bg-yellow px-5">Join Event</button>
+              ${button}
             </div>
           </div>
           `;
