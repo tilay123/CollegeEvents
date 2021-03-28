@@ -316,7 +316,7 @@ $(function () {
 });
 
 
-async function joinEvent(eventId,eventOwnerId){
+async function joinEvent(eventId,eventOwnerId,eventName){
   //alert("Joining..." + eventId +" "+ eventOwnerId)
 
   const db = firebase.firestore();
@@ -333,10 +333,16 @@ async function joinEvent(eventId,eventOwnerId){
     alert("Request already sent!");
   } else {
 
+    const userDoc = await db.collection('users').doc(userId).get();
+    const userDocData = userDoc.data();
+
     const request = {
       "eventOwner": eventOwnerId,
       "eventId": eventId,
+      "eventName":eventName,
       "requesterId": userId,
+      "requesterEmail": userDocData.email,
+      "requesterName": userDocData.firstName + ' ' + userDocData.lastName,
       "requestedDate": firebase.firestore.Timestamp.now(),
     }
   
@@ -354,8 +360,6 @@ $(document).ready(function () {
     const firstname = $("#Fname-field").val();
     const lastname = $("#Lname-field").val();
 
-
-
     if (eventname.trim() == "" || eventtime.trim() == "" || eventlocation.trim() == "" || firstname.trim() == "" || lastname.trim() == "") {
       alert("all fields must be filled")
       //console.log(username + " " + firstName + " " + lastName + + " " + birthday + " " +  gender)
@@ -367,8 +371,8 @@ $(document).ready(function () {
         "username": eventname,
         "firstName": firstName,
         "lastName": lastName,
-        "Location:": eventlocation,
-        "Event Time": eventime,
+        "location:": eventlocation,
+        "eventTime": eventime,
       }
 
       await db.collection('users').doc(userId).update(updatedProfileData).catch(function (error) {
@@ -384,4 +388,8 @@ $(document).ready(function () {
 
 function goToeditEventPage(owner,docId){
   window.location.href = "/edit-event1.html?owner=" + owner + '&docId=' + docId;
+}
+
+function handleRequest(requestStatus, RequestDoc){
+  
 }

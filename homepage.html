@@ -57,6 +57,9 @@
               <i class="fa fa-user"></i> Welcome
             </a>
             <div class="dropdown-menu">
+              <a href="waitlist.html" class="dropdown-item">
+                <i class="fas fa-hourglass"></i> Waitlist
+              </a>
               <a href="ChangeAccountInform.html" class="dropdown-item">
                 <i class="fa fa-user-circle"></i> Change account info
               </a>
@@ -156,13 +159,14 @@
           console.log(currentUserId);
 
 
+
           var button = "";
 
 
           if (docObj.owner === currentUserId){
             button = `<button type="button" onclick="goToeditEventPage('${docObj.owner}','${doc.id}')" class="btn btn-block bg-yellow px-5">Edit Event</button>`;
           } else {
-            button = `<button type="button" onclick="joinEvent('${doc.id}', '${docObj.owner}')" class="btn btn-block bg-yellow px-5">Join Event</button>`;
+            button = `<button type="button" onclick="joinEvent('${doc.id}', '${docObj.owner}', '${docObj.eventName}')" class="btn btn-block bg-yellow px-5">Join Event</button>`;
           }
 
 
@@ -184,7 +188,19 @@
           </div>
           `;
         });
-        $("#mainEventContent").html(eventHtml);
+
+        if (eventHtml == ""){
+          eventHtml = `
+          <div class="my-5">
+          <h3>No events to show. Add more events then it will be displaye here.
+          <a href="./create-events.html">Add events</a></h3>
+          </div>
+          `
+          $("#mainEventContent").html(eventHtml);
+        } else{
+          $("#mainEventContent").html(eventHtml);
+        }
+       
       });
     
   </script>
