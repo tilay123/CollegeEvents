@@ -82,7 +82,9 @@
   <section>
 
     <div class="container" id="user-requests">
-
+      <div class="my-5">
+        <h3>No request found. If users request to join your event, it will be displayed here.</h3>
+        </div>
     </div>
   </section>
 
@@ -101,14 +103,15 @@
         const db = firebase.firestore();
 
         const currentUserId = firebase.auth().currentUser.uid;
+        var eventRequestHtml = "";
         
         db.collection('eventRequests').doc(currentUserId).collection("requests").orderBy("requestedDate").limit(10)
-          .onSnapshot((querySnapshot) => {
-            var eventRequestHtml = "";
+        .onSnapshot((querySnapshot) => {
+            
 
             console.log(currentUserId);
 
-            querySnapshot.forEach((doc) => {
+            querySnapshot.forEach((doc) => { // 
               requestDoc = doc;
               console.log(doc.id, " => ", doc.data());
 
