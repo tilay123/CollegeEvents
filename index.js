@@ -1,4 +1,15 @@
 $("#create-event-image-upload-progress").hide();
+
+/* Follow these instructions to get this web application to work:
+  1. Create a Firebase project
+  2. Add a web app from Firebase homepage then replace only the firebaseConfig variable (We took care of other things)
+  3. Get Started with Authentication then enable "Email/Password"
+  4. Get started with Cloud Firestore (Start in test mode so that you don't have to worry about security rules)
+  5. Follow README.md instructions to run this application
+ 
+// ********************REPLACE THIS WITH YOUR FIREBASE CONFIGURATIONS END *************
+*/
+
 var firebaseConfig = {
   apiKey: "AIzaSyDhMRBPlcNtNUE6YrrE99YdF8i_r0Lw0YI",
   authDomain: "collegeeventsv2.firebaseapp.com",
