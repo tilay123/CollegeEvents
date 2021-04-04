@@ -11,13 +11,13 @@ $("#create-event-image-upload-progress").hide();
 */
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDhMRBPlcNtNUE6YrrE99YdF8i_r0Lw0YI",
-  authDomain: "collegeeventsv2.firebaseapp.com",
-  projectId: "collegeeventsv2",
-  storageBucket: "collegeeventsv2.appspot.com",
-  messagingSenderId: "651170916635",
-  appId: "1:651170916635:web:81125aedf0a35ad60ecbbe",
-  measurementId: "G-8P2SDKXDCR"
+  apiKey: "AIzaSyBEQnF5XxDL6bS9AupRLE_gC_l4HcpltOI",
+  authDomain: "cis454project-866bc.firebaseapp.com",
+  projectId: "cis454project-866bc",
+  storageBucket: "cis454project-866bc.appspot.com",
+  messagingSenderId: "833261976282",
+  appId: "1:833261976282:web:673eb4007bce00c98b43e3",
+  measurementId: "G-LFNLZCJW7Y"
 };
 // Initialize Firebase
 if (!firebase.apps.length) {
@@ -373,36 +373,62 @@ async function joinEvent(eventId,eventOwnerId,eventName){
     alert("Event join request sent");
   }
 }
-$(document).ready(function () {
-  $("#wait-list").click(async function () {
-    const eventname = $("#Eeventname-field").val()
-    const eventtime = $("#time-field").val()
-    const eventlocation = $("#Location").val();
-    const firstname = $("#Fname-field").val();
-    const lastname = $("#Lname-field").val();
 
-    if (eventname.trim() == "" || eventtime.trim() == "" || eventlocation.trim() == "" || firstname.trim() == "" || lastname.trim() == "") {
+
+// Editing Event
+$(document).ready(function () {
+  $("#editEventSubmit").click(async function () {
+    const eventname = $("#edit-event-name").val()
+    const eventlocation = $("#edit-event-location").val();
+    const eventCapacity = $("#edit-event-capacity").val();
+    const eventDate = $("#edit-event-date").val()
+    const eventTime = $("#edit-event-time").val()
+    const eventContactNumber = $("#edit-event-contact").val();
+    const eventDescriptions = $("#edit-event-description").val();
+
+    if (eventname.trim() == "" || eventDate.trim() == "" || eventlocation.trim() == "" || eventTime.trim() == "" || eventCapacity.trim() == "" || eventContactNumber.trim() == "" || eventDescriptions.trim() == "") {
       alert("all fields must be filled")
       //console.log(username + " " + firstName + " " + lastName + + " " + birthday + " " +  gender)
     } else {
       const db = firebase.firestore();
-      const userId = firebase.auth().currentUser.uid
 
-      const updatedProfileData = {
-        "username": eventname,
-        "firstName": firstName,
-        "lastName": lastName,
-        "location:": eventlocation,
-        "eventTime": eventime,
+      const profileParam = new URLSearchParams(window.location.search);
+      const docId = profileParam.get('docId');// extract uid from URI
+
+    //  alert("alert(docId)"+docId)
+      
+      const eventDoc = await db.collection('events').doc(docId).get().catch(function (error) {
+        alert("Error uploading user Data:" + error.message )
+        alert(docId)
+       // window.location.href = "homepage.html";
+      });
+
+      const eventDocData = eventDoc.data();
+
+      const currentUserId = firebase.auth().currentUser.uid
+
+//      console.log(eventDoc.id);
+      alert("alert(eventDoc)"+eventDocData.owner + "userIdf "+currentUserId) 
+      if (eventDocData.owner !== currentUserId){
+        window.location.href = "homepage.html";
       }
 
-      await db.collection('users').doc(userId).update(updatedProfileData).catch(function (error) {
+      const updatedEventData = {
+        "eventName": eventname,
+        "eventLocation": eventlocation,
+        "eventCapacity": eventCapacity,
+        "eventDateAndTime": firebase.firestore.Timestamp.fromDate(new Date(eventDate + " " + eventTime)),
+        "eventContactNumber": eventContactNumber,
+        "eventDescription": eventDescriptions,
+        "availableSeats": eventCapacity,
+        "eventUpdatedDate": firebase.firestore.Timestamp.now(),
+      }
+
+      await db.collection('events').doc(eventDoc.id).update(updatedEventData).catch(function (error) {
         alert("Error uploading user Data:" + error.message)
       });
       window.location.href = "homepage.html"
     }
-
-
   });
 
 });
@@ -426,6 +452,6 @@ async function handleRequest(accepted, requestDoc){
 
   await requestDoc.ref.delete();
 
-  
-
 }
+
+// Edit Event Existing
