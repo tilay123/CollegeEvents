@@ -96,8 +96,9 @@
   </script>
 
   <script>
-            var requestDoc;
-    
+    // if the user if logged in, check if there are any join request made by other users to the current logged in user.
+    // If there event join request then display them with its' information and 2 buttons, accept and reject buttons. 
+    var requestDoc;
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const db = firebase.firestore();

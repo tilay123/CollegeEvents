@@ -178,6 +178,9 @@
 
     <script src="index.js"></script>
     <script>
+        // checks to see if any user if logged in. 
+        // If user is logged in and their personal informations exists in the database then take them to the homapage.
+        // 
         firebase.auth().onAuthStateChanged(async (user) => {
             if (user) {
                 const userId = firebase.auth().currentUser.uid

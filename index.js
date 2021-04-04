@@ -26,6 +26,7 @@ if (!firebase.apps.length) {
 }
 
 console.log(window.location.href);
+// In index.html, if user tries to login with their email and password this function will execute. 
 $("#loginButton").click(function () {
   var email = $("#loginEmail").val();
   var pass = $("#loginPassword").val();
@@ -40,6 +41,7 @@ $("#loginButton").click(function () {
 });
 
 
+// once the user is logged in and presses signout button, this code will take them back to the sign in page(index.html)
 function logout() {
   firebase.auth().signOut().then(() => {
     window.location.href = "/index.html";
@@ -48,6 +50,8 @@ function logout() {
   });
 }
 
+// when a user creates an account, this function will get the infomations entered by the user then save those
+// data in the firestore database in a collection named "users"
 $("#signUpButton").click(async function () {
 
   const firstName = $("#firstName").val()
@@ -101,7 +105,8 @@ $("#signUpButton").click(async function () {
 
 });
 
-
+// when a user creates an event, the event data with the event picture will be extracted then it will be uploaded to the
+// database.
 $(document).on('click', '#createEventSubmit', function () {
   const eventName = $("#create-event-name").val()
   const eventLocation = $("#create-event-location").val()
@@ -127,8 +132,8 @@ $(document).on('click', '#createEventSubmit', function () {
     // upload event to the database
 
     const userId = firebase.auth().currentUser.uid
-    if (userId == "") {
-      window.location.href = "homepage.html"
+    if (userId == "") { // checking if user is still logged in. If not take them sign in page(index.js)
+      window.location.href = "index.html"
     }
 
     const db = firebase.firestore();
@@ -137,6 +142,7 @@ $(document).on('click', '#createEventSubmit', function () {
     const storageRef = firebase.storage().ref() // firestore reference
     const fileName = time.getTime() + "_" + eventImage.name
 
+    // upload picture to storage
     const uploadTask = storageRef.child("eventPictures/" + fileName).put(eventImage)
     $("#create-event-image-upload-progress").show()
 
@@ -217,7 +223,7 @@ $(document).on('click', '#createEventSubmit', function () {
     })
 })();
 
-
+// when a user edit their personal information this code will help replace extisting firestore data with newly entered data.
 $(document).ready(function () {
   $("#saveEditedProfileInfo").click(async function () {
     const username = $("#change-username").val()
@@ -255,7 +261,8 @@ $(document).ready(function () {
 });
 
 
-// Forget Password
+// Reset Password
+// This code will send an password reset email.
 $("#resetPwd").click(function (e) {
 
   const email = $("#resetPwdEmail").val()
@@ -327,6 +334,9 @@ $(function () {
 });
 
 
+// When a user tries to join an event the code below will check if they have already joined the event.
+// If they have not joined the event then extact users data with event information and save it in a different collection.
+// The different collection will later be used by the event owner to accept or reject the join request.
 async function joinEvent(eventId,eventOwnerId,eventName){
   //alert("Joining..." + eventId +" "+ eventOwnerId)
 
@@ -397,10 +407,12 @@ $(document).ready(function () {
 
 });
 
+// helper function for going to correct edit event page url.
 function goToeditEventPage(owner,docId){
   window.location.href = "/edit-event1.html?owner=" + owner + '&docId=' + docId;
 }
 
+// helper function for accepting for rejecting the join request
 async function handleRequest(accepted, requestDoc){
 
   var docData = requestDoc.data();

@@ -136,6 +136,7 @@
   </script>
 
   <script>
+    // if user is logged out then take them back to sign in page(index.html)
     firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         window.location.href = "index.html";
@@ -145,6 +146,8 @@
 
   <script>
     
+      // the code below will read the events from the database. For each event event it will create a seperate card to display
+      // event data
       const db = firebase.firestore();
       
       db.collection('events').orderBy("eventCreatedDate").limit(10).get().then((querySnapshot) => {
@@ -162,7 +165,7 @@
 
           var button = "";
 
-
+          // if the event owner is current logged in user then diplay an "Edit Event" button. Otherwise display "Join Event" button
           if (docObj.owner === currentUserId){
             button = `<button type="button" onclick="goToeditEventPage('${docObj.owner}','${doc.id}')" class="btn btn-block bg-yellow px-5">Edit Event</button>`;
           } else {
@@ -170,7 +173,7 @@
           }
 
 
-
+            // will append this code for each event
           eventHtml += `<div class="card my-3">
             <img class="card-img-top"
               src="${docObj.eventImage}"
@@ -189,6 +192,7 @@
           `;
         });
 
+        // if no event was in database then tell user there are no events.
         if (eventHtml == ""){
           eventHtml = `
           <div class="my-5">
