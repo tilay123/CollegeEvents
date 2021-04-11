@@ -48,11 +48,19 @@
         <br>
         <p class="word-2"> Error code: </p>
         <div class="btn-pos mt-4">
-            <button type="button" class="btn btn-lg btn-outline-light btn-pos">HomePage</button>
+            <button type="button" id="myButton" class="btn btn-lg btn-outline-light btn-pos">HomePage</button>
         </div>
     </div>
 </div>
+<script>
+    //get a reference to the element
+    var myBtn = document.getElementById('myButton');
 
+    //add event listener
+    myBtn.addEventListener('click', function(event) {
+        window.location.href='homepage.html';
+    });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
